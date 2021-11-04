@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react'
 import { FaUserAlt } from 'react-icons/fa';
 import { HiIdentification } from 'react-icons/hi'
 import { MdEmail } from 'react-icons/md'
+import Time from '../src/components/Time';
 
 export default function Home() {
 
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const [loading, setLoading] = useState(false);
   const [processed, setProssed] = useState(false);
+  const { hours, setHours } = useState([])
 
   const execute = (data) => {
     setLoading(true);
@@ -35,66 +37,205 @@ export default function Home() {
         </div>
       </section>
       <main className="container">
-          <div className="columns is-centered pt-6">
-            <form onSubmit={handleSubmit(execute)}>
-              <div className="field">
-                <label className="label">Identification: </label>
-                <div className="control has-icons-left ">
-                  <input type="number" className="input is-info is-rounded" disabled={processed} {...register('id', { required: true, maxLength: 10, minLength: 10 })}></input>
-                  <span className="icon is-small is-left">
-                    <span className="pl-3"><HiIdentification/></span>
-                  </span>
-                </div>
-                {errors.id && <span className="has-text-warning has-text-weight-semibold">Identification required.</span>}
+        <div className="columns is-centered pt-6">
+          <form onSubmit={handleSubmit(execute)}>
+            <div className="field">
+              <label className="label">Identification: </label>
+              <div className="control has-icons-left ">
+                <input type="number" className="input is-info is-rounded" disabled={processed} {...register('id', { required: true, maxLength: 10, minLength: 10 })}></input>
+                <span className="icon is-small is-left">
+                  <span className="pl-3"><HiIdentification /></span>
+                </span>
               </div>
-              <div className="field">
-                <label className="label">Name: </label>
-                <div className="control has-icons-left">
-                  <input type="text" className="input is-info is-rounded" disabled={processed} {...register('name', { required: true })}></input>
-                  <span className="icon is-small is-left">
-                    <span className="pl-3"><FaUserAlt/></span>
-                  </span>
-                </div>
-                {errors.name && <span className="has-text-warning has-text-weight-semibold">Name required.</span>}
+              {errors.id && <span className="has-text-warning has-text-weight-semibold">Identification required.</span>}
+            </div>
+            <div className="field">
+              <label className="label">Name: </label>
+              <div className="control has-icons-left">
+                <input type="text" className="input is-info is-rounded" disabled={processed} {...register('name', { required: true })}></input>
+                <span className="icon is-small is-left">
+                  <span className="pl-3"><FaUserAlt /></span>
+                </span>
               </div>
-              <div className="field">
-                <label className="label">Email: </label>
-                <div className="control has-icons-left">
-                  <input type="email" className="input is-info is-rounded" disabled={processed} {...register('email', { required: true })}></input>
-                  <span className="icon is-small is-left">
-                    <span className="pl-3"><MdEmail/></span>
-                  </span>
-                </div>
-                {errors.name && <span className="has-text-warning has-text-weight-semibold">Name required.</span>}
+              {errors.name && <span className="has-text-warning has-text-weight-semibold">Name required.</span>}
+            </div>
+            <div className="field">
+              <label className="label">Email: </label>
+              <div className="control has-icons-left">
+                <input type="email" className="input is-info is-rounded" disabled={processed} {...register('email', { required: true })}></input>
+                <span className="icon is-small is-left">
+                  <span className="pl-3"><MdEmail /></span>
+                </span>
               </div>
-              <div className="level-item">
-                <div className="columns is-multiline is-centered cards-container" id="sectioncontainer">
-                  <div className="column is-narrow">
-                    <article className="message is-black">
-                      <div className="message-header">
-                        <p>Monday</p>
-                        <button className="delete" aria-label="delete"></button>
+              {errors.name && <span className="has-text-warning has-text-weight-semibold">Name required.</span>}
+            </div>
+            <div className="level-item">
+              <div className="columns is-multiline is-centered cards-container" id="sectioncontainer">
+                <div className="column is-narrow">
+                  <article className="message is-black">
+                    <div className="message-header">
+                      <p>Monday</p>
+                      <button className="delete" aria-label="delete"></button>
+                    </div>
+                    <div className="message-body">
+                      <div id="monday" className="control">
+                        <Time data='05h30 - 07h00' />
+                        <Time data='07h00 - 08h30' />
+                        <Time data='08h30 - 10h00' />
+                        <Time data='10h00 - 11h30' />
+                        <Time data='11h30 - 13h00' />
+                        <Time data='13h00 - 14h30' />
+                        <Time data='14h30 - 16h00' />
+                        <Time data='16h00 - 17h30' />
+                        <Time data='17h30 - 19h00' />
+                        <Time data='19h00 - 20h30' />
+                        <Time data='20h30 - 22h00' />
                       </div>
-                      <div className="message-body">
-                        <div className="board-item">
-                          <div className="board-item-content"><span>07h00 - 09h00</span></div>
-                        </div>
-                        
-                        <div className="board-item">
-                          <div className="board-item-content"><span>09h00 - 11h00</span></div>
-                        </div>
-                        <div className="board-item">
-                          <div className="board-item-content"><span>11h00 - 13h00</span></div>
-                        </div>
+                    </div>
+                  </article>
+                </div>
+                <div className="column is-narrow">
+                  <article className="message is-black">
+                    <div className="message-header">
+                      <p>Tuesday</p>
+                    </div>
+                    <div className="message-body">
+                      <div id="tuesday" className="control">
+                        <Time data='05h30 - 07h00' />
+                        <Time data='07h00 - 08h30' />
+                        <Time data='08h30 - 10h00' />
+                        <Time data='10h00 - 11h30' />
+                        <Time data='11h30 - 13h00' />
+                        <Time data='13h00 - 14h30' />
+                        <Time data='14h30 - 16h00' />
+                        <Time data='16h00 - 17h30' />
+                        <Time data='17h30 - 19h00' />
+                        <Time data='19h00 - 20h30' />
+                        <Time data='20h30 - 22h00' />
                       </div>
-                    </article>
-                  </div>
-
+                    </div>
+                  </article>
+                </div>
+                <div className="column is-narrow">
+                  <article className="message is-black">
+                    <div className="message-header">
+                      <p>Wednesday</p>
+                      <button className="delete" aria-label="delete"></button>
+                    </div>
+                    <div className="message-body">
+                      <div className="control">
+                        <Time data='05h30 - 07h00' />
+                        <Time data='07h00 - 08h30' />
+                        <Time data='08h30 - 10h00' />
+                        <Time data='10h00 - 11h30' />
+                        <Time data='11h30 - 13h00' />
+                        <Time data='13h00 - 14h30' />
+                        <Time data='14h30 - 16h00' />
+                        <Time data='16h00 - 17h30' />
+                        <Time data='17h30 - 19h00' />
+                        <Time data='19h00 - 20h30' />
+                        <Time data='20h30 - 22h00' />
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div className="column is-narrow">
+                  <article className="message is-black">
+                    <div className="message-header">
+                      <p>Thursday</p>
+                      <button className="delete" aria-label="delete"></button>
+                    </div>
+                    <div className="message-body">
+                      <div className="control">
+                        <Time data='05h30 - 07h00' />
+                        <Time data='07h00 - 08h30' />
+                        <Time data='08h30 - 10h00' />
+                        <Time data='10h00 - 11h30' />
+                        <Time data='11h30 - 13h00' />
+                        <Time data='13h00 - 14h30' />
+                        <Time data='14h30 - 16h00' />
+                        <Time data='16h00 - 17h30' />
+                        <Time data='17h30 - 19h00' />
+                        <Time data='19h00 - 20h30' />
+                        <Time data='20h30 - 22h00' />
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div className="column is-narrow">
+                  <article className="message is-black">
+                    <div className="message-header">
+                      <p>Friday</p>
+                      <button className="delete" aria-label="delete"></button>
+                    </div>
+                    <div className="message-body">
+                      <div className="control">
+                        <Time data='05h30 - 07h00' />
+                        <Time data='07h00 - 08h30' />
+                        <Time data='08h30 - 10h00' />
+                        <Time data='10h00 - 11h30' />
+                        <Time data='11h30 - 13h00' />
+                        <Time data='13h00 - 14h30' />
+                        <Time data='14h30 - 16h00' />
+                        <Time data='16h00 - 17h30' />
+                        <Time data='17h30 - 19h00' />
+                        <Time data='19h00 - 20h30' />
+                        <Time data='20h30 - 22h00' />
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div className="column is-narrow">
+                  <article className="message is-black">
+                    <div className="message-header">
+                      <p>Saturday</p>
+                      <button className="delete" aria-label="delete"></button>
+                    </div>
+                    <div className="message-body">
+                      <div className="control">
+                        <Time data='05h30 - 07h00' />
+                        <Time data='07h00 - 08h30' />
+                        <Time data='08h30 - 10h00' />
+                        <Time data='10h00 - 11h30' />
+                        <Time data='11h30 - 13h00' />
+                        <Time data='13h00 - 14h30' />
+                        <Time data='14h30 - 16h00' />
+                        <Time data='16h00 - 17h30' />
+                        <Time data='17h30 - 19h00' />
+                        <Time data='19h00 - 20h30' />
+                        <Time data='20h30 - 22h00' />
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div className="column is-narrow">
+                  <article className="message is-black">
+                    <div className="message-header">
+                      <p>Sunday</p>
+                      <button className="delete" aria-label="delete"></button>
+                    </div>
+                    <div className="message-body">
+                      <div className="control" id="Sunday">
+                        <Time data='05h30 - 07h00' />
+                        <Time data='07h00 - 08h30' />
+                        <Time data='08h30 - 10h00' />
+                        <Time data='10h00 - 11h30' />
+                        <Time data='11h30 - 13h00' />
+                        <Time data='13h00 - 14h30' />
+                        <Time data='14h30 - 16h00' />
+                        <Time data='16h00 - 17h30' />
+                        <Time data='17h30 - 19h00' />
+                        <Time data='19h00 - 20h30' />
+                        <Time data='20h30 - 22h00' />
+                      </div>
+                    </div>
+                  </article>
                 </div>
               </div>
-              <button type="submit" className="button is-info is-rounded mr-2" disabled={processed}>Process</button>
-            </form>
-          </div>
+            </div>
+            <button type="submit" className="button is-info is-rounded mr-2" disabled={processed}>Process</button>
+          </form>
+        </div>
       </main>
 
       <footer >
